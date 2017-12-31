@@ -30,10 +30,11 @@ router.post('/video', function(req, res, next) {
 
                 // push all video formats for download (skipping audio)
                 info.formats.forEach(function(item) {
-                    if(item.format_note !== 'DASH audio' && item.filesize) {
+                    //SL : Enable the audio formats :
+                    //if(item.format_note !== 'DASH audio' && item.filesize) {
                         item.filesize = item.filesize ? bytesToSize(item.filesize): 'unknown';
                         formats.push(item);
-                    }
+                    //}
                 });
                 res.render('listvideo', {meta: {id: info.id, formats: formats}});
             })
